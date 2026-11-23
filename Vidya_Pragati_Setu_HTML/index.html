@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#102e3a" />
+    <title>Vidya Pragati Setu V4.4 | Student Benefits</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <script src="js/schemes-data.js" defer></script>
+    <script src="js/db.js" defer></script>
+    <script src="js/app.js" defer></script>
+  </head>
+  <body>
+    <header class="nav">
+      <a class="brand" href="#top"
+        ><img src="assets/vps-logo.svg" alt="VPS logo" /><span
+          ><b>Vidya Pragati Setu</b
+          ><small id="tagline">Student Benefits • Gujarat</small></span
+        ></a
+      >
+      <nav>
+        <a href="#overview" data-en="Overview" data-gu="ઝાંખી">Overview</a
+        ><a href="#schemes" data-en="Find schemes" data-gu="યોજનાઓ શોધો"
+          >Find schemes</a
+        ><a href="#eligibility" data-en="Eligibility" data-gu="પાત્રતા"
+          >Eligibility</a
+        ><a href="auth.html" data-en="Apply" data-gu="અરજી કરો">Apply</a
+        ><a href="admin-login.html" data-en="Admin" data-gu="એડમિન">Admin</a>
+      </nav>
+      <div class="tools">
+        <button
+          id="langBtn"
+          class="tool"
+          type="button"
+          aria-label="Change language"
+        >
+          ગુજરાતી</button
+        ><button
+          id="themeBtn"
+          class="tool"
+          type="button"
+          aria-label="Toggle light and dark theme"
+        >
+          ☾ Dark
+        </button>
+      </div>
+    </header>
+    <main id="top">
+      <section class="hero" id="overview">
+        <div>
+          <label
+            class="eyebrow"
+            data-en="ONE DIGITAL WINDOW FOR STUDENT SUPPORT"
+            data-gu="વિદ્યાર્થી સહાય માટે એક ડિજિટલ પ્લેટફોર્મ"
+            >ONE DIGITAL WINDOW FOR STUDENT SUPPORT</label
+          >
+          <h1
+            data-en="Every opportunity.<br><em>Within reach.</em>"
+            data-gu="દરેક તક.<br><em>હવે તમારી નજીક.</em>"
+          >
+            Every opportunity.<br /><em>Within reach.</em>
+          </h1>
+          <p
+            data-en="Discover scholarship opportunities, understand scheme conditions and find official application links through one student-friendly platform."
+            data-gu="શિષ્યવૃત્તિની તકો શોધો, યોજનાની શરતો સમજો અને સત્તાવાર અરજી લિંક્સ મેળવો."
+          >
+            Discover scholarship opportunities, understand scheme conditions and
+            find official application links through one student-friendly
+            platform.
+          </p>
+          <a
+            class="button"
+            href="#eligibility"
+            data-en="Check my eligibility →"
+            data-gu="મારી પાત્રતા તપાસો →"
+            >Check my eligibility →</a
+          >
+          <a class="button" href="auth.html">Apply now →</a>
+          <a class="button lightbtn" href="admin-login.html">Admin →</a>
+          <a
+            class="button lightbtn"
+            href="#schemes"
+            data-en="Explore schemes"
+            data-gu="યોજનાઓ જુઓ"
+            >Explore schemes</a
+          >
+          <div
+            class="trust"
+            data-en="✓ Government + private directory　 ✓ Eligibility guidance　 ✓ Official links"
+            data-gu="✓ સરકારી + ખાનગી યોજનાઓ　 ✓ પાત્રતા માર્ગદર્શન　 ✓ સત્તાવાર લિંક્સ"
+          >
+            ✓ Government + private directory　 ✓ Eligibility guidance　 ✓
+            Official links
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="circle"></div>
+          <div class="mock">
+            <img src="assets/vps-logo.svg" alt="" /><small
+              >VIDYA PRAGATI SETU</small
+            >
+            <h2
+              data-en="One profile.<br>More possibilities."
+              data-gu="એક પ્રોફાઇલ.<br>વધુ તકો."
+            >
+              One profile.<br />More possibilities.
+            </h2>
+            <hr />
+            <p
+              data-en="Student support, connected →"
+              data-gu="વિદ્યાર્થી સહાય, એક જ જગ્યાએ →"
+            >
+              Student support, connected →
+            </p>
+          </div>
+          <div
+            class="bubble one"
+            data-en="✓ Scheme discovery"
+            data-gu="✓ યોજનાઓ શોધો"
+          >
+            ✓ Scheme discovery
+          </div>
+          <div
+            class="bubble two"
+            data-en="↗ Student support"
+            data-gu="↗ વિદ્યાર્થી સહાય"
+          >
+            ↗ Student support
+          </div>
+        </div>
+      </section>
+      <section class="stats">
+        <div>
+          <b id="sCount">—</b
+          ><small data-en="Scheme records" data-gu="યોજનાઓ"
+            >Scheme records</small
+          >
+        </div>
+        <div>
+          <b id="gCount">—</b
+          ><small data-en="Government schemes" data-gu="સરકારી યોજનાઓ"
+            >Government schemes</small
+          >
+        </div>
+        <div>
+          <b id="pCount">—</b
+          ><small data-en="Private schemes" data-gu="ખાનગી યોજનાઓ"
+            >Private schemes</small
+          >
+        </div>
+        <div>
+          <b id="aCount">—</b
+          ><small data-en="Demo applications" data-gu="ડેમો અરજીઓ"
+            >Demo applications</small
+          >
+        </div>
+      </section>
+      <section class="section" id="schemes">
+        <label class="eyebrow" data-en="DISCOVER SUPPORT" data-gu="સહાય શોધો"
+          >DISCOVER SUPPORT</label
+        >
+        <h2 data-en="Explore student schemes" data-gu="વિદ્યાર્થી યોજનાઓ જુઓ">
+          Explore student schemes
+        </h2>
+        <p
+          class="sub"
+          data-en="Browse public and private scheme information. Check the original source before applying."
+          data-gu="સરકારી અને ખાનગી યોજનાઓની માહિતી જુઓ. અરજી કરતાં પહેલાં સત્તાવાર માહિતી તપાસો."
+        >
+          Browse public and private scheme information. Check the original
+          source before applying.
+        </p>
+        <div class="filters">
+          <input
+            id="q"
+            placeholder="Search scheme, class or keyword"
+            aria-label="Search schemes"
+          /><select id="type">
+            <option value="All">All schemes</option>
+            <option value="Government">Government</option>
+            <option value="Private">Private</option></select
+          ><select id="cat">
+            <option value="All">All categories</option>
+            <option>Merit + income</option>
+            <option>Material assistance</option>
+            <option>Education incentive</option>
+            <option>Merit scholarship</option>
+            <option>Undergraduate</option></select
+          ><button id="searchBtn" type="button" data-en="Search" data-gu="શોધો">
+            Search
+          </button>
+        </div>
+        <div id="cards" class="cards">Loading schemes…</div>
+      </section>
+      <section class="elig" id="eligibility">
+        <div>
+          <label
+            class="eyebrow pale"
+            data-en="SMART ELIGIBILITY GUIDE"
+            data-gu="પાત્રતા માર્ગદર્શન"
+            >SMART ELIGIBILITY GUIDE</label
+          >
+          <h2
+            data-en="Find support that<br><em>may fit your profile.</em>"
+            data-gu="તમારી પ્રોફાઇલને<br><em>અનુકૂળ સહાય શોધો.</em>"
+          >
+            Find support that<br /><em>may fit your profile.</em>
+          </h2>
+          <p
+            data-en="Enter basic information to see preliminary matches. Do not enter Aadhaar numbers, bank details or passwords."
+            data-gu="પ્રાથમિક પાત્રતા જાણવા સામાન્ય માહિતી આપો. આધાર નંબર, બેંક વિગતો અથવા પાસવર્ડ દાખલ કરશો નહીં."
+          >
+            Enter basic information to see preliminary matches. Do not enter
+            Aadhaar numbers, bank details or passwords.
+          </p>
+          <small
+            data-en="🔒 Demo guidance only. Not an official government verification."
+            data-gu="🔒 માત્ર ડેમો માર્ગદર્શન. સત્તાવાર સરકારી ચકાસણી નથી."
+            >🔒 Demo guidance only. Not an official government
+            verification.</small
+          >
+        </div>
+        <form id="eligForm">
+          <h3 data-en="Student information" data-gu="વિદ્યાર્થીની માહિતી">
+            Student information
+          </h3>
+          <div class="formgrid">
+            <label
+              >Student ID *<input
+                name="student_id"
+                required
+                placeholder="VPS1001" /></label
+            ><label>Student name *<input name="name" required /></label
+            ><label
+              >Current class *<select name="grade" required>
+                <option value="">Select</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+              </select></label
+            ><label
+              >Annual family income (₹)<input
+                name="annual_income"
+                type="number"
+                min="0" /></label
+            ><label
+              >Category<select name="category">
+                <option value="">Not specified</option>
+                <option>SC</option>
+                <option>ST</option>
+                <option>SEBC</option>
+                <option>OBC</option>
+                <option>General</option>
+                <option>EWS</option>
+              </select></label
+            ><label
+              >Gender<select name="gender">
+                <option value="">Not specified</option>
+                <option>Female</option>
+                <option>Male</option>
+                <option>Other</option>
+              </select></label
+            ><label
+              >School type<select name="school_type">
+                <option value="">Not specified</option>
+                <option>Government</option>
+                <option>Government-aided</option>
+                <option>Local body</option>
+                <option>Private</option>
+              </select></label
+            ><label
+              >Previous marks (%)<input
+                name="previous_marks"
+                type="number"
+                min="0"
+                max="100"
+                step=".1"
+            /></label>
+          </div>
+          <button
+            class="submit"
+            type="submit"
+            data-en="Check possible matches →"
+            data-gu="સંભવિત યોજનાઓ તપાસો →"
+          >
+            Check possible matches →
+          </button>
+          <div id="results"></div>
+        </form>
+      </section>
+      <section class="section register" id="register">
+        <label class="eyebrow">APPLICATION WORKSPACE</label>
+        <h2>Ready to apply?</h2>
+        <p class="sub">
+          Create an account or sign in to complete your student profile and
+          scholarship application.
+        </p>
+        <a class="button" href="auth.html">Sign in / Create account →</a>
+      </section>
+      <section class="sources" id="sources">
+        <label class="eyebrow pale">TRUST & TRANSPARENCY</label>
+        <h2>Official information sources</h2>
+        <p>
+          Use the linked department or provider pages to confirm current
+          eligibility, amounts and deadlines.
+        </p>
+        <div class="sourcegrid">
+          <a
+            href="https://dsel.education.gov.in/scholarships"
+            target="_blank"
+            rel="noopener"
+            >Ministry of Education
+            <small>National scholarship information ↗</small></a
+          ><a href="https://www.sebexam.org/" target="_blank" rel="noopener"
+            >Gujarat State Examination Board
+            <small>Current exam notices ↗</small></a
+          ><a
+            href="https://www.digitalgujarat.gov.in/"
+            target="_blank"
+            rel="noopener"
+            >Digital Gujarat <small>State service portal ↗</small></a
+          ><a href="https://mysy.guj.nic.in/" target="_blank" rel="noopener"
+            >MYSY portal <small>Higher education assistance ↗</small></a
+          ><a
+            href="https://www.reliancefoundation.org/"
+            target="_blank"
+            rel="noopener"
+            >Reliance Foundation <small>Scholarship programmes ↗</small></a
+          ><a
+            href="https://www.sbifoundation.in/"
+            target="_blank"
+            rel="noopener"
+            >SBI Foundation <small>Asha scholarship information ↗</small></a
+          ><a href="https://www.tatacapital.com/" target="_blank" rel="noopener"
+            >Tata Capital <small>Pankh scholarship information ↗</small></a
+          >
+        </div>
+      </section>
+      <div class="disclaimer">
+        <b>Important:</b> Vidya Pragati Setu is an independent student-support
+        directory and prototype, not a Government of Gujarat or Government of
+        India website. This is a curated directory, not a guarantee that every
+        available scholarship is listed. Eligibility, award amounts, documents
+        and deadlines can change; confirm them with the official provider. Demo
+        registrations and tracking records are stored locally and are not sent
+        to any provider.
+      </div>
+    </main>
+    <footer>
+      <div class="footbrand">
+        <img src="assets/vps-logo.svg" /><b>Vidya Pragati Setu</b>
+      </div>
+      <p>Student-first initiative • Gujarat</p>
+      <small>© 2026 • Independent educational prototype</small>
+    </footer>
+  </body>
+</html>

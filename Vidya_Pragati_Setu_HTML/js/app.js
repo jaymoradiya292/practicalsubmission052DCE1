@@ -1,0 +1,37 @@
+const $=s=>document.querySelector(s);const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+// (old fetch-based api() helper removed - data now comes from db.js)
+let allSchemes=[];let language='en';try{language=localStorage.getItem('vps-language')||'en'}catch{}
+const translations={tagline:{en:'Student Benefits • Gujarat',gu:'વિદ્યાર્થી લાભ • ગુજરાત'},searchPlaceholder:{en:'Search scheme, class or keyword',gu:'યોજના, ધોરણ અથવા શબ્દ શોધો'},all:{en:'All schemes',gu:'બધી યોજનાઓ'},government:{en:'Government',gu:'સરકારી'},private:{en:'Private',gu:'ખાનગી'},categories:{en:'All categories',gu:'બધી શ્રેણીઓ'},who:{en:'Who can apply',gu:'કોણ અરજી કરી શકે'},eligibility:{en:'Eligibility',gu:'પાત્રતા'},documents:{en:'Documents',gu:'દસ્તાવેજો'},deadline:{en:'Deadline',gu:'છેલ્લી તારીખ'},support:{en:'Support',gu:'સહાય'},official:{en:'Official information ↗',gu:'સત્તાવાર માહિતી ↗'},demoApply:{en:'Create demo application',gu:'ડેમો અરજી બનાવો'},noMatches:{en:'No matching schemes. Try another search.',gu:'કોઈ યોજના મળી નથી. બીજી રીતે શોધો.'},loading:{en:'Loading…',gu:'લોડ થઈ રહ્યું છે…'},applyPrompt:{en:'Enter the demo student ID:',gu:'ડેમો વિદ્યાર્થી ID દાખલ કરો:'},namePrompt:{en:'Enter student name:',gu:'વિદ્યાર્થીનું નામ દાખલ કરો:'}};
+function tr(k){return translations[k]?.[language]||k}
+const schemeGu={
+'National Means-cum-Merit Scholarship (NMMSS)':'રાષ્ટ્રીય સાધન-સહ-મેરિટ શિષ્યવૃત્તિ (NMMSS)',
+'Sarasvati Sadhana Yojana — SC girls bicycle':'સરસ્વતી સાધના યોજના — SC વિદ્યાર્થીનીઓ',
+'Bicycle assistance — Developing Castes Welfare':'વિકસતી જાતિ કલ્યાણ — સહાય યોજના',
+'Namo Lakshmi Yojana':'નમો લક્ષ્મી યોજના','Namo Saraswati Vigyan Sadhana Yojana':'નમો સરસ્વતી વિજ્ઞાન સાધના યોજના',
+'Mukhyamantri Gyan Sadhana Merit Scholarship':'મુખ્યમંત્રી જ્ઞાન સાધના મેરિટ શિષ્યવૃત્તિ','Gyan Setu Merit Scholarship':'જ્ઞાન સેતુ મેરિટ શિષ્યવૃત્તિ',
+'Post-Matric Scholarship for SC Students':'SC વિદ્યાર્થીઓ માટે પોસ્ટ-મેટ્રિક શિષ્યવૃત્તિ','Post-Matric Scholarship for ST Students':'ST વિદ્યાર્થીઓ માટે પોસ્ટ-મેટ્રિક શિષ્યવૃત્તિ',
+'Post-Matric Scholarship for OBC / SEBC Students':'OBC / SEBC વિદ્યાર્થીઓ માટે પોસ્ટ-મેટ્રિક શિષ્યવૃત્તિ','MYSY — Mukhyamantri Yuva Swavalamban Yojana':'MYSY — મુખ્યમંત્રી યુવા સ્વાવલંબન યોજના',
+'Digital Gujarat Scholarships':'ડિજિટલ ગુજરાત શિષ્યવૃત્તિઓ','Reliance Foundation Undergraduate Scholarship':'રિલાયન્સ ફાઉન્ડેશન અંડરગ્રેજ્યુએટ શિષ્યવૃત્તિ','SBI Foundation Asha Scholarship':'SBI ફાઉન્ડેશન આશા શિષ્યવૃત્તિ','Tata Capital Pankh Scholarship':'ટાટા કેપિટલ પંખ શિષ્યવૃત્તિ'};
+const guFields={'Eligibility':'પાત્રતા','Documents':'દસ્તાવેજો','Deadline':'છેલ્લી તારીખ','Confirm with provider':'પ્રદાતા પાસેથી ખાતરી કરો','See current notice':'વર્તમાન સૂચના જુઓ','Check current cycle':'વર્તમાન ચક્ર તપાસો','Confirm current details with the provider.':'પ્રદાતા પાસેથી વર્તમાન વિગતોની ખાતરી કરો.'};
+function val(v){return language==='gu'?(schemeGu[v]||guFields[v]||v):v}function applyLanguage(){document.documentElement.lang=language;document.querySelectorAll('[data-en][data-gu]').forEach(el=>{el.innerHTML=el.dataset[language]});$('#tagline').textContent=tr('tagline');$('#q').placeholder=tr('searchPlaceholder');$('#langBtn').textContent=language==='en'?'ગુજરાતી':'English';$('#type').options[0].text=tr('all');$('#type').options[1].text=tr('government');$('#type').options[2].text=tr('private');$('#cat').options[0].text=tr('categories');renderCards()}
+function setTheme(mode){const dark=mode==='dark';document.body.classList.toggle('dark',dark);document.documentElement.style.colorScheme=dark?'dark':'light';$('#themeBtn').textContent=dark?'☀ Light':'☾ Dark';$('#themeBtn').setAttribute('aria-pressed',String(dark));try{localStorage.setItem('vps-theme',mode)}catch{}}
+function loadStats(){const d=DB.getStats();$('#sCount').textContent=d.schemes;$('#gCount').textContent=d.government;$('#pCount').textContent=d.private;$('#aCount').textContent=d.applications}
+function card(s){return `<article class="card"><span class="type">${esc(s.scheme_type.toUpperCase())} · ${esc(s.category||'SCHOLARSHIP')}</span><h3>${esc(val(s.name))}</h3><p>${esc(language==='gu'?({1:'આર્થિક રીતે નબળા પરિવારોના પસંદ કરાયેલા પ્રતિભાશાળી વિદ્યાર્થીઓ માટે કેન્દ્રિય શિષ્યવૃત્તિ.',4:'પાત્ર શાળામાં અભ્યાસ કરતી વિદ્યાર્થીનીઓને સહાય માટે ગુજરાતની શિક્ષણ પ્રોત્સાહન યોજના.',5:'પાત્ર વિજ્ઞાન પ્રવાહના વિદ્યાર્થીઓ માટે ગુજરાતની શિક્ષણ પ્રોત્સાહન યોજના.',11:'ઉચ્ચ શિક્ષણ મેળવતા પાત્ર વિદ્યાર્થીઓ માટે ગુજરાતની નાણાકીય સહાય યોજના.'}[s.id]||s.summary):s.summary)}</p><div class="meta"><b>${esc(tr('who'))}:</b> ${esc(s.classes||'See current notice')}<br><b>${esc(tr('support'))}:</b> ${esc(s.assistance||'See current notice')}<br><b>${esc(tr('eligibility'))}:</b> ${esc(val(s.eligibility||'Confirm with provider'))}<br><b>${esc(tr('documents'))}:</b> ${esc(val(s.documents||'See official notice'))}<br><b>${esc(tr('deadline'))}:</b> ${esc(val(s.deadline||'Check current cycle'))}<br><small>${esc(s.note||'Confirm current details with the provider.')}</small></div><div class="actions"><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(tr('official'))}</a><a class="apply-link" href="auth.html?scheme=${s.id}">Apply now →</a></div></article>`}
+function renderCards(){if(!allSchemes.length)return;const q=$('#q').value.trim().toLowerCase(),type=$('#type').value,cat=$('#cat').value;const rows=allSchemes.filter(s=>(type==='All'||s.scheme_type===type)&&(cat==='All'||s.category===cat)&&(!q||[s.name,s.summary,s.eligibility,s.classes,s.assistance].join(' ').toLowerCase().includes(q)));$('#cards').innerHTML=rows.length?rows.map(card).join(''):`<p>${esc(tr('noMatches'))}</p>`}
+function initSchemes(){allSchemes=DB.getSchemes();renderCards()}
+$('#searchBtn').addEventListener('click',renderCards);$('#q').addEventListener('input',renderCards);$('#type').addEventListener('change',renderCards);$('#cat').addEventListener('change',renderCards);
+$('#langBtn').addEventListener('click',()=>{language=language==='en'?'gu':'en';try{localStorage.setItem('vps-language',language)}catch{};applyLanguage()});$('#themeBtn').addEventListener('click',()=>{const dark=document.body.classList.contains('dark');setTheme(dark?'light':'dark')});
+(()=>{try{let mode='light';try{mode=localStorage.getItem('vps-theme')||'light'}catch{}setTheme(mode);applyLanguage();loadStats();initSchemes()}catch(e){$('#cards').textContent='Error: '+e.message}})();
+
+/* ---------- Eligibility form (was missing in the Python version) ---------- */
+$('#eligForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  const f=Object.fromEntries(new FormData(e.target));
+  const num=v=>v===''||v==null?null:Number(v);
+  const student={name:f.name,grade:Number(f.grade),annual_income:num(f.annual_income),category:f.category||null,gender:f.gender||null,school_type:f.school_type||null,previous_marks:num(f.previous_marks)};
+  const out=DB.checkEligibility(student);
+  // show potential matches first, then the rest
+  const order={'Potential match':0,'Needs official verification':1,'Likely not eligible':2,'Not fresh-selection grade':2,'Not matched by supplied profile':3};
+  const rows=out.results.slice().sort((a,b)=>(order[a.status]??1)-(order[b.status]??1));
+  $('#results').innerHTML=`<p class="sub">${esc(out.notice)}</p>`+rows.map(r=>`<div class="result"><b>${esc(val(r.scheme))}</b> — ${esc(r.status)}<p>${esc(r.reason)}</p><a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(tr('official'))}</a></div>`).join('');
+});
